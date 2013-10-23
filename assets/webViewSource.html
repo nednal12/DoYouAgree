@@ -1,11 +1,17 @@
 <html>
 	<body>
+		<label for="email">Owner's Email:</label><input type="email" id="email" placeholder="example@email.com" />
 		<input type="button" value="Say Hello" onClick="showAndroidToast('Hello Android!')" />
 		
 		<script type="text/javascript">
 			function showAndroidToast(toast)
 			{
 				JSInterface.showToast(toast);
+				
+				var whichElement = document.getElementById("email");
+				var emailString = whichElement.value;
+				
+				JSInterface.showToast(emailString);
 			}
 		</script>
 	</body>

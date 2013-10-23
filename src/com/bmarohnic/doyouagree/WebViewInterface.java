@@ -17,4 +17,10 @@ public class WebViewInterface {
 	{
 		Toast.makeText(_context, toast, Toast.LENGTH_LONG).show();
 	}
+	
+	@JavascriptInterface
+	public void getEmailAddress(String toast)
+	{
+		Toast.makeText(_context, toast, Toast.LENGTH_LONG).show();
+	}
 }
