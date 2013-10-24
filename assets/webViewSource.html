@@ -1,17 +1,59 @@
 <html>
+	<style>
+		body{background-color:lightblue;}
+		
+		h2 {
+    		border-style: solid;
+    		border-width: 1px;
+    		border-color: black;
+    		background-color:white;
+			}
+		
+	</style>
+	
 	<body>
-		<label for="email">Owner's Email:</label><input type="email" id="email" placeholder="example@email.com" />
-		<input type="button" value="Say Hello" onClick="showAndroidToast('Hello Android!')" />
+		<div>
+		<h1>End User Licensing Agreement</h1>
+			<h2>By entering your valid email address and selecting "Agree" you are agreeing to the terms and conditions associated with this application.<h2>
+		</div>
+		<p><label for="email">Owner's Email:</label><input type="email" id="email" placeholder="example@email.com" /></p>
+		
+		<div>
+			<input type="button" value="Agree" onClick="agreeClick('Hello Android!')" />
+			<input type="button" value="Disagree" onClick="disagreeClick('The application will now close')" />
+		</div>
 		
 		<script type="text/javascript">
-			function showAndroidToast(toast)
+			function agreeClick(toast)
 			{
 				JSInterface.showToast(toast);
 				
+				
 				var whichElement = document.getElementById("email");
 				var emailString = whichElement.value;
+				var emailString2 = "Please enter an email address";
 				
-				JSInterface.showToast(emailString);
+				if (whichElement.value === "") 
+				{
+					JSInterface.showToast(emailString2);
+				}
+				else
+				{
+					JSInterface.showToast(emailString);
+				}
+			}
+			
+			function disagreeClick(toast)
+			{
+				JSInterface.showToast(toast);
+				
+				var ask = confirm("Are you sure you want to exit the app?");
+				
+				if (ask)
+				{
+					JSInterface.disagreeClick();
+				}
+				
 			}
 		</script>
 	</body>
