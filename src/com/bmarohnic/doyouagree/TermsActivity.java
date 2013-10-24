@@ -19,6 +19,7 @@ public class TermsActivity extends Activity {
 		WebView webView = (WebView) findViewById(R.id.webView);
 		WebSettings webSettings = webView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
+		webView.setWebChromeClient(new MyWebChromeClient());
 		webView.addJavascriptInterface(new WebViewInterface(this), "JSInterface");
 		
 		
