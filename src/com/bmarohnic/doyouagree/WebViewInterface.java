@@ -1,7 +1,7 @@
 package com.bmarohnic.doyouagree;
 
-import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
 
@@ -23,5 +23,13 @@ public class WebViewInterface {
 	public void disagreeClick()
 	{
 		System.exit(0);
+	}
+	
+	@JavascriptInterface
+	public void openPictureActivity(String username)
+	{
+		Intent pictureActivity = new Intent(_context, PictureActivity.class);
+		pictureActivity.putExtra("username", username);
+		_context.startActivity(pictureActivity);
 	}
 }

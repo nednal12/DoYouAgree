@@ -14,9 +14,10 @@
 	<body>
 		<div>
 		<h1>End User Licensing Agreement</h1>
-			<h2>By entering your valid email address and selecting "Agree" you are agreeing to the terms and conditions associated with this application.<h2>
+			<h2>By entering your user name and password and selecting "Agree" you are agreeing to the terms and conditions associated with this application.<h2>
 		</div>
-		<p><label for="email">Owner's Email:</label><input type="email" id="email" placeholder="example@email.com" /></p>
+		<p><label for="username">User Name:</label><input type="username" id="username" placeholder="username" /></p>
+		<p><label for="password">Password:  </label><input type="password" id="password" placeholder="username" /></p>
 		
 		<div>
 			<input type="button" value="Agree" onClick="agreeClick('Hello Android!')" />
@@ -24,29 +25,42 @@
 		</div>
 		
 		<script type="text/javascript">
+		
+			// agreeClick() accepts a string that is redirected to the native showToast() method.
+			// The passed in string will ultimately be shown as a native Android toast.
 			function agreeClick(toast)
-			{
-				JSInterface.showToast(toast);
+			{	
 				
+				var usernameId = document.getElementById("username");
+				var passwordId = document.getElementById("password");
+				var usernameString = usernameId.value;
+				var passwordString = passwordId.value;
+				var alertString1 = "Please enter a user name!";
+				var alertString2 = "Please enter a password!";
 				
-				var whichElement = document.getElementById("email");
-				var emailString = whichElement.value;
-				var emailString2 = "Please enter an email address";
-				
-				if (whichElement.value === "") 
+				if (usernameString === "") 
 				{
-					JSInterface.showToast(emailString2);
+					JSInterface.showToast(alertString1);
+				}
+				else if (passwordString === "")
+				{
+					JSInterface.showToast(alertString2);
 				}
 				else
 				{
-					JSInterface.showToast(emailString);
+					JSInterface.showToast("User Name: " + usernameString);
+					JSInterface.showToast("Password: " + passwordString);
+					JSInterface.openPictureActivity(usernameString);
 				}
 			}
 			
+			
+			// disagreeClick() accepts a string that may be passed to the native showToast() method
+			// depending on whether or not the user confirms or cancels the JS confirm dialog.
+			// The WebView's WebChromeClient onJsConfirm method must be overridden to simply return
+			// false in order for the JS confirm dialog to appear.
 			function disagreeClick(toast)
 			{
-				
-				
 				var ask = confirm("Are you sure you want to exit the app?");
 				
 				if (ask)

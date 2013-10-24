@@ -15,7 +15,7 @@ public class TermsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_terms);
-		
+		 
 		WebView webView = (WebView) findViewById(R.id.webView);
 		WebSettings webSettings = webView.getSettings();
 		webSettings.setJavaScriptEnabled(true);
