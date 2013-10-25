@@ -2,6 +2,9 @@ package com.bmarohnic.doyouagree;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.Menu;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
@@ -15,7 +18,23 @@ public class TermsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_terms);
-		 
+		
+		// Create a handle for SharedPreferences in order to verify if the user has ever logged in before
+		SharedPreferences sharedPref = this.getSharedPreferences(this.getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+		String username = sharedPref.getString("username", "");
+		String password = sharedPref.getString("password", "");
+		
+		// If the user has already agreed to the terms and conditions then let them proceed to the main activity.
+		if (username.equals(" "))
+		{
+			Toast.makeText(this, "You have already accepted the terms", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Now opening 'Picture This'", Toast.LENGTH_LONG).show();
+			
+			Intent pictureActivity = new Intent(this, PictureActivity.class);
+			pictureActivity.putExtra("username", username);
+			this.startActivity(pictureActivity);
+		}
+		
 		WebView webView = (WebView) findViewById(R.id.webView);
 		WebSettings webSettings = webView.getSettings();
 		webSettings.setJavaScriptEnabled(true);

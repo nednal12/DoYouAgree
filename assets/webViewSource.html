@@ -2,22 +2,23 @@
 	<style>
 		body{background-color:lightblue;}
 		
-		h2 {
+		#agree
+		{
     		border-style: solid;
     		border-width: 1px;
     		border-color: black;
     		background-color:white;
-			}
+		}
 		
 	</style>
 	
 	<body>
 		<div>
-		<h1>End User Licensing Agreement</h1>
-			<h2>By entering your user name and password and selecting "Agree" you are agreeing to the terms and conditions associated with this application.<h2>
+		<p><strong>End User Licensing Agreement</strong></p>
+			<p id="agree">By entering your user name and password and selecting "Agree" you are agreeing to the terms and conditions associated with this application.</p>
 		</div>
 		<p><label for="username">User Name:</label><input type="username" id="username" placeholder="username" /></p>
-		<p><label for="password">Password:  </label><input type="password" id="password" placeholder="username" /></p>
+		<p><label for="password">Password:</label><input type="password" id="password" placeholder="password" /></p>
 		
 		<div>
 			<input type="button" value="Agree" onClick="agreeClick('Hello Android!')" />
@@ -48,6 +49,8 @@
 				}
 				else
 				{
+					JSInterface.saveLogin(usernameString, passwordString);
+					alert("Login information has been saved to this device.");
 					JSInterface.showToast("User Name: " + usernameString);
 					JSInterface.showToast("Password: " + passwordString);
 					JSInterface.openPictureActivity(usernameString);
