@@ -25,7 +25,7 @@ public class TermsActivity extends Activity {
 		String password = sharedPref.getString("password", "");
 		
 		// If the user has already agreed to the terms and conditions then let them proceed to the main activity.
-		if (username.equals(" "))
+		if (!username.equals(""))
 		{
 			Toast.makeText(this, "You have already accepted the terms", Toast.LENGTH_LONG).show();
 			Toast.makeText(this, "Now opening 'Picture This'", Toast.LENGTH_LONG).show();
